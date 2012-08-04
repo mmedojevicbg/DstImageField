@@ -10,6 +10,7 @@
  * DstImageField is a form widget for image upload
  *
  * @author Marko Medojevic <mmedojevicbg@gmail.com>
+ * @version 0.1
  */
 class DstImageField extends CWidget
 {
