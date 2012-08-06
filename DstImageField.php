@@ -10,7 +10,7 @@
  * DstImageField is a form widget for image upload
  *
  * @author Marko Medojevic <mmedojevicbg@gmail.com>
- * @version 0.1
+ * @version 0.2
  */
 class DstImageField extends CWidget
 {
@@ -49,6 +49,9 @@ class DstImageField extends CWidget
      */
     protected $assets;
     
+    public $preview_width = '160';
+    public $preview_height = '120';
+    
     /**
      * Run this widget.
      */
@@ -63,12 +66,12 @@ class DstImageField extends CWidget
       
         $html = '';
         $html .= CHtml::openTag('div', array('class' => 'dst-image-field-container'));
-        $html .= CHtml::openTag('div', array('class' => 'dst-image-field-current-image-container'));
+        $html .= CHtml::openTag('div', array('class' => 'dst-image-field-current-image-container', 'style' => "width: {$this->preview_width}px; height: {$this->preview_height}px;"));
         $html .= CHtml::openTag('div', array('class' => 'dst-image-field-current-image-container-header'));
         $html .= CHtml::link('', '#', array('class' => 'dst-image-field-link dst-image-field-delete-link', 'style' => "background: transparent url('" . $this->assets . '/images/delete.png' . "') no-repeat center center"));
         $html .= CHtml::link('', '#', array('class' => 'dst-image-field-link dst-image-field-zoom-link', 'style' => "background: transparent url('" . $this->assets . '/images/zoom.png' . "') no-repeat center center"));
         $html .= CHtml::closeTag('div');
-        $html .= CHtml::image($this->getCurrentImageFullPath(), 'image', array('class' => 'dst-image-field-current-image'));
+        $html .= CHtml::image($this->getCurrentImageFullPath(), 'image', array('class' => 'dst-image-field-current-image', 'style' => "width: {$this->preview_width}px; height: {$this->preview_height}px;"));
         $html .= CHtml::closeTag('div');
         $html .= CHtml::fileField(self::getFileFieldName($this->attribute), false, array('class' => 'dst-image-field-fileupload'));
         $html .= Chtml::hiddenField(self::getStateHiddenFieldName($this->attribute), $stateValue, array('class' => 'dst-image-field-state'));
