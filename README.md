@@ -16,7 +16,9 @@ Image upload widget for YII 1.x framework.
 	$this->widget('ext.DstImageField.DstImageField',array(
 			'model'=>$model,
 			'attribute'=>'image_full',
-			'absolute_path' => '/images/full/'
+			'absolute_path' => '/images/full/', // absolute path where images are stored
+			'preview_width' => '320', // optional attribute - default 160
+            'preview_height' => '200' // optional attribute - default 120
 	));
 
 #### Add widget using form builder	
@@ -39,7 +41,7 @@ _It only checks wheter submitted image is valid. Validation will not be trigered
 		  'maxHeight' => 480,
 		  'minHeight' => 120
 	)
-_Any of additional attributes can be ommited_
+_Any of additional attributes can be omitted_
 
 #### Handle form submit and save file to disk
 	Yii::import('ext.DstImageField.DstImageField');
@@ -56,5 +58,5 @@ _Any of additional attributes can be ommited_
 	}
 Possible states for DstImageField are: 
 * STATE_CHOSEN - in this case new image has been submitted and storage can be handled with code above
-* STATE_EMPTY - image has not been submitted so if field is not required empty value will bi set to model
+* STATE_EMPTY - image has not been submitted so if field is not required empty value will be set to model
 * STATE_UNCHANGED - image has not been submitted but model already contains image which will be shown in preview.
