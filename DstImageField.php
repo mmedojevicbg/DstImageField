@@ -101,6 +101,7 @@ class DstImageField extends CWidget
      * @return string image file name
      */
     protected function getCurrentValue() {
+        $this->refreshCurrentValue();
         return $this->model->{$this->attribute};
     }
     
@@ -131,5 +132,17 @@ class DstImageField extends CWidget
         $cs = Yii::app()->getClientScript();
         $cs->registerScriptFile($this->assets.'/init.js',CClientScript::POS_END);
         $cs->registerCssFile($this->assets.'/style.css');
+    }
+    
+    /**
+     * Refreshes image field value.
+     */
+    protected function refreshCurrentValue() {
+        $model = $this->model->findByPk($this->model->getPrimaryKey());
+        if($model) {
+            $this->model->{$this->attribute} = $model->{$this->attribute}; 
+        } else {
+            $this->model->{$this->attribute} = '';
+        }
     }
 }
