@@ -45,12 +45,19 @@ class DstImageField extends CWidget
     public $absolute_path;
     
     /**
+     * @var integer width of preview image
+     */
+    public $preview_width = '160';
+    
+    /**
+     * @var integer height of preview image
+     */
+    public $preview_height = '120';
+    
+    /**
      * @var string absolute path where extension asset is publishedS
      */
     protected $assets;
-    
-    public $preview_width = '160';
-    public $preview_height = '120';
     
     /**
      * Run this widget.
